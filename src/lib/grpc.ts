@@ -10,18 +10,53 @@ const definition = loadSync(protoPath, {
   defaults: true,
   oneofs: true,
 });
-const loaded = grpc.loadPackageDefinition(definition) as any;
+
+type EmployeeServiceConstructor = new (
+  address: string,
+  credentials: grpc.ChannelCredentials,
+) => grpc.Client;
+
+const loaded = grpc.loadPackageDefinition(definition) as unknown as {
+  vira: {
+    employee: {
+      v1: {
+        EmployeeService: EmployeeServiceConstructor;
+      };
+    };
+  };
+};
 const EmployeeService = loaded.vira.employee.v1.EmployeeService;
 
 const address = process.env.VIRATASK_GRPC_ADDRESS ?? "localhost:5000";
 const client = new EmployeeService(address, grpc.credentials.createInsecure());
 
+type UnaryMethod<T> = (
+  request: Record<string, unknown>,
+  metadata: grpc.Metadata,
+  options: grpc.CallOptions,
+  callback: (error: grpc.ServiceError | null, response: T) => void,
+) => grpc.ClientUnaryCall;
+
 export function callGrpc<T>(method: string, request: Record<string, unknown> = {}): Promise<T> {
   return new Promise((resolve, reject) => {
-    client[method](request, new grpc.Metadata(), { deadline: Date.now() + 10_000 }, (error: grpc.ServiceError | null, response: T) => {
-      if (error) reject(error);
-      else resolve(response);
-    });
+    const unaryClient = client as grpc.Client & Record<string, UnaryMethod<T>>;
+    const rpcMethod = unaryClient[method];
+
+    if (typeof rpcMethod !== "function") {
+      reject(new Error(`Unknown gRPC method: ${method}`));
+      return;
+    }
+
+    rpcMethod.call(
+      client,
+      request,
+      new grpc.Metadata(),
+      { deadline: Date.now() + 10_000 },
+      (error, response) => {
+        if (error) reject(error);
+        else resolve(response);
+      },
+    );
   });
 }
 

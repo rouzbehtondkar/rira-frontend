@@ -36,7 +36,7 @@ npm run dev
 آدرس gRPC به‌صورت پیش‌فرض `http://localhost:5000` است. برای تغییر آن، متغیر محیطی زیر را تنظیم کنید:
 
 ```env
-VIRATASK_GRPC_ADDRESS=http://localhost:5000
+VIRATASK_GRPC_ADDRESS=localhost:5000
 ```
 
 این اتصال بدون TLS فقط برای توسعه محلی است. برای استقرار، ارتباط gRPC باید با TLS و تنظیمات شبکه امن شود.

@@ -13,12 +13,12 @@ const definition = protoLoader.loadSync(protoPath, {
 const loaded = grpc.loadPackageDefinition(definition) as any;
 const EmployeeService = loaded.vira.employee.v1.EmployeeService;
 
-const address = process.env.VIRATASK_GRPC_ADDRESS ?? "http://localhost:5000";
+const address = process.env.VIRATASK_GRPC_ADDRESS ?? "localhost:5000";
 const client = new EmployeeService(address, grpc.credentials.createInsecure());
 
 export function callGrpc<T>(method: string, request: Record<string, unknown> = {}): Promise<T> {
   return new Promise((resolve, reject) => {
-    client[method](request, (error: grpc.ServiceError | null, response: T) => {
+    client[method](request, { deadline: Date.now() + 10_000 }, (error: grpc.ServiceError | null, response: T) => {
       if (error) reject(error);
       else resolve(response);
     });

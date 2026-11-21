@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package vira.employee.v1;
+
+option csharp_namespace = "ViraTask.Contracts.Employee.V1";
+
+service EmployeeService {
+  rpc CreateEmployee (CreateEmployeeRequest) returns (Employee);
+  rpc GetEmployee (GetEmployeeRequest) returns (Employee);
+  rpc ListEmployees (ListEmployeesRequest) returns (ListEmployeesResponse);
+  rpc UpdateEmployee (UpdateEmployeeRequest) returns (Employee);
+  rpc DeleteEmployee (DeleteEmployeeRequest) returns (DeleteEmployeeResponse);
+}
+
+message Employee {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string national_code = 4;
+  string birth_date = 5;
+}
+
+message CreateEmployeeRequest {
+  string first_name = 1;
+  string last_name = 2;
+  string national_code = 3;
+  string birth_date = 4;
+}
+
+message GetEmployeeRequest { string id = 1; }
+message ListEmployeesRequest {}
+message ListEmployeesResponse { repeated Employee employees = 1; }
+
+message UpdateEmployeeRequest {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string national_code = 4;
+  string birth_date = 5;
+}
+
+message DeleteEmployeeRequest { string id = 1; }
+message DeleteEmployeeResponse { bool deleted = 1; }

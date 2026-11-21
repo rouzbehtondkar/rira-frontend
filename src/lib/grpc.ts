@@ -18,7 +18,7 @@ const client = new EmployeeService(address, grpc.credentials.createInsecure());
 
 export function callGrpc<T>(method: string, request: Record<string, unknown> = {}): Promise<T> {
   return new Promise((resolve, reject) => {
-    client[method](request, { deadline: Date.now() + 10_000 }, (error: grpc.ServiceError | null, response: T) => {
+    client[method](request, new grpc.Metadata(), { deadline: Date.now() + 10_000 }, (error: grpc.ServiceError | null, response: T) => {
       if (error) reject(error);
       else resolve(response);
     });

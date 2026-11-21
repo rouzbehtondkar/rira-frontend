@@ -1,9 +1,9 @@
 import path from "node:path";
 import * as grpc from "@grpc/grpc-js";
-import protoLoader from "@grpc/proto-loader";
+import { loadSync } from "@grpc/proto-loader";
 
 const protoPath = path.join(process.cwd(), "contracts/employee/v1/employee.proto");
-const definition = protoLoader.loadSync(protoPath, {
+const definition = loadSync(protoPath, {
   keepCase: false,
   longs: String,
   enums: String,

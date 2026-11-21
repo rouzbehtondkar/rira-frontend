@@ -2,10 +2,10 @@
 
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react";
 import {
-  Activity, ArrowDownUp, BriefcaseBusiness, CalendarDays, Check, ChevronDown,
+  Activity, CalendarDays, Check, ChevronDown,
   CircleAlert, Clock3, FilePlus2, Filter, LayoutDashboard, LoaderCircle,
   MoreHorizontal, Pencil, Plus, RefreshCw, Search, ShieldCheck, Trash2,
-  UserRound, Users, X,
+  Users, X,
 } from "lucide-react";
 
 type Employee = {

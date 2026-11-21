@@ -115,13 +115,13 @@ export default function Home() {
   return (
     <main className="app-shell">
       <aside className="sidebar">
-        <div className="brand"><div className="brand-mark">V</div><div><strong>ویرا</strong><span>سامانه منابع انسانی</span></div></div>
+        <div className="brand"><div className="brand-mark">R</div><div><strong>ریرا</strong><span>سامانه منابع انسانی</span></div></div>
         <div className="nav-caption">منوی اصلی</div>
         <a className="nav-link active" href="#"><LayoutDashboard size={18} /><span>داشبورد</span></a>
         <a className="nav-link" href="#employees"><Users size={18} /><span>مدیریت کارکنان</span><span className="nav-count">{employees.length}</span></a>
         <div className="sidebar-bottom">
           <div className="connection-card"><span className="connection-dot" /><div><b>وضعیت سرویس</b><small>اتصال از طریق gRPC</small></div><ShieldCheck size={17} /></div>
-          <div className="profile"><div className="avatar">ر</div><div><b>مدیر سیستم</b><small>پنل آزمایشی ویرا</small></div><MoreHorizontal size={19} /></div>
+          <div className="profile"><div className="avatar">ر</div><div><b>مدیر سیستم</b><small>پنل آزمایشی ریرا</small></div><MoreHorizontal size={19} /></div>
         </div>
       </aside>
 
@@ -154,7 +154,7 @@ export default function Home() {
             <div className="table-footer"><span>نمایش {filtered.length.toLocaleString("fa-IR")} از {employees.length.toLocaleString("fa-IR")} کارمند</span><span className="secure-note"><ShieldCheck size={14} /> همگام با سرویس gRPC</span></div>
           </section>
 
-          <footer className="page-footer"><span>© ۱۴۰۵ سامانه مدیریت کارکنان ویرا</span><span><span className="footer-dot" /> اتصال امن در محیط توسعه</span></footer>
+          <footer className="page-footer"><span>© ۱۴۰۵ سامانه مدیریت کارکنان ریرا</span><span><span className="footer-dot" /> اتصال امن در محیط توسعه</span></footer>
         </div>
       </section>
 

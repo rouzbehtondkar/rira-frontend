@@ -1,6 +1,6 @@
-# Vira Task Frontend
+# Rira Task Frontend
 
-پنل فارسی مدیریت کارکنان با Next.js و TypeScript که برای آزمایش سرویس gRPC پروژه [vira-task](https://github.com/rouzbehtondkar/vira-task) ساخته شده است.
+پنل فارسی مدیریت کارکنان با Next.js و TypeScript که برای آزمایش سرویس gRPC پروژه [rira-backend](https://github.com/rouzbehtondkar/rira-backend) ساخته شده است.
 
 ## معماری ارتباط
 
@@ -14,7 +14,7 @@
 
 - Node.js 20 یا بالاتر
 - npm
-- اجرای بک‌اند Vira Task و SQL Server مطابق README مخزن اصلی
+- اجرای بک‌اند Rira Task و SQL Server مطابق README مخزن اصلی
 
 ## اجرا
 
